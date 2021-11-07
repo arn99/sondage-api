@@ -1,0 +1,3 @@
+date_created,id,password,last_login,username,is_active,staff,admin,commercial,code_commercial
+2021-11-05,1,tester 123,,tester,1,0,0,1,t1
+2021-11-05,2,passer 1234,2021-11-05 18:51:53,commercial1,1,0,0,1,t2
