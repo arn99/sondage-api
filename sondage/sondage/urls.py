@@ -16,8 +16,15 @@ Including another URLconf
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
+from rest_framework_simplejwt import views as jwt_views
 
+admin.site.site_header = 'Sondage admin'
+admin.site.site_title = 'Sondage admin'
+admin.site.index_title = 'Sondage administration'
+admin.empty_value_display = '**Empty**'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('sondageapp.urls')),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ]

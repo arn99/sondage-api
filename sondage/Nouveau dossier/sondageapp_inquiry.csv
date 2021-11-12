@@ -1,2 +1,1 @@
-date_created,title,is_completed,creator_id,questionnaire_id
-2021-11-05,Premier test,0,1,2
+date_created,id,title,is_completed,creator_id

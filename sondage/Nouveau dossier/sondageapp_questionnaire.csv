@@ -1,2 +1,1 @@
-date_created,customer_fullname,customer_sexe,customer_age,recommendation,commercial_id,questions_id
-2021-11-05,Serigne Fall,Masculin,12,Addition est cool,2,5
+date_created,id,customer_id,questions_id,responses_id

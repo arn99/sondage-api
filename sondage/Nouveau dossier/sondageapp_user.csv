@@ -1,3 +1,5 @@
-date_created,id,password,last_login,username,is_active,staff,admin,commercial,code_commercial
-2021-11-05,1,tester 123,,tester,1,0,0,1,t1
-2021-11-05,2,passer 1234,2021-11-05 18:51:53,commercial1,1,0,0,1,t2
+date_created,id,password,last_login,username,is_active,admin,commercial,code_commercial,is_superuser,is_staff
+2021-11-06,1,passer1234,2021-11-06 19:54:00,rach,1,0,1,t3,0,0
+2021-11-06,2,passer1234,2021-11-06 19:54:00,fay,1,1,1,t4,0,0
+2021-11-10,3,pbkdf2_sha256$260000$RPtxKV4yVP7u0SIaRDd4oB$/CZXXOFWm/S9R0KjHkhxIhvlwp9w0PQcA3uuxGHQ/rE=,2021-11-10 22:15:49.993253,admin,1,0,1,,1,1
+2021-11-10,4,passera,2021-11-10 22:22:00,tester,1,0,1,t5,0,1
