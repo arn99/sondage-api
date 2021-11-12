@@ -29,13 +29,19 @@ class ResponseSerializer(FlexFieldsModelSerializer):
     class Meta:
         model = Response
         fields = ['id', 'choice']
+
+class InquirySerializerForquestion(FlexFieldsModelSerializer):
+    class Meta:
+        model = Inquiry
+        fields = ['id', 'title']
 class QuestionSerializer(FlexFieldsModelSerializer):
     response = ResponseSerializer(source='response_set', many=True)
     class Meta:
         model = Question
-        fields = ['id', 'body', 'response']
+        fields = ['id', 'body', 'response','inquiry']
         expandable_fields = {
-          'response': (ResponseSerializer, {'many': True})
+          'response': (ResponseSerializer, {'many': True}),
+          'inquiry': InquirySerializerForquestion
         }
 class InquirySerializer(FlexFieldsModelSerializer):
     question = QuestionSerializer(source='question_set', many=True)
@@ -46,7 +52,10 @@ class InquirySerializer(FlexFieldsModelSerializer):
           'question': (QuestionSerializer, {'many': True})
         }
 
-class QuestionnaireSerializer(serializers.ModelSerializer):
+class QuestionnaireSerializer(FlexFieldsModelSerializer):
      class Meta:
         model = Questionnaire
-        fields = ['id', 'customer', 'questions', 'responses']
+        fields = ('id', 'customer', 'questions', 'responses')
+        expandable_fields = {'questions': QuestionSerializer}
+
+
