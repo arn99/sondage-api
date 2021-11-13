@@ -39,6 +39,7 @@ class Question(models.Model):
     date_created = models.DateField(auto_created=True)
     inquiry = models.ForeignKey(Inquiry, on_delete = models.CASCADE)
     recommendation = models.CharField(max_length = 250)
+    
     def __str___(self):
         return self.body
 class Response(models.Model):

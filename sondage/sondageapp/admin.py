@@ -48,9 +48,24 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('is_commercial', 'code_commercial')
         })
     )
+
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ['body']
+    fields = ['body']
+    list_filter = ['body']
+    search_fields = ['body']
+class ResponseAdmin(admin.ModelAdmin):
+    def question_body(self, obj):
+        return obj.question.body
+    list_display = ('choice', 'question_body')
+    fields = ('choice', 'question')
+    list_filter = ('choice', 'question')
+    autocomplete_fields = ['question']
+
+    
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(Question, QuestionAdmin)
 admin.site.register(Inquiry)
 admin.site.register(Questionnaire)
-admin.site.register(Response)
-admin.site.register(Question)
+admin.site.register(Response, ResponseAdmin)
 admin.site.register(Customer)
