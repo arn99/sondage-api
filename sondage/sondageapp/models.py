@@ -19,7 +19,7 @@ class Inquiry(models.Model):
     is_completed = models.BooleanField(default=False)
     date_created = models.DateField(auto_created=True)
     creator = models.ForeignKey(CustomUser, on_delete = models.CASCADE, related_name = "Createur")
-    def __str___(self):
+    def __str__(self):
         return self.title
 class Customer(models.Model):
     fullname = models.CharField(max_length = 250)
@@ -30,7 +30,7 @@ class Customer(models.Model):
         on_delete=models.CASCADE,
         
     )
-    def __str___(self):
+    def __str__(self):
         return self.fullname
 
 
@@ -40,22 +40,23 @@ class Question(models.Model):
     inquiry = models.ForeignKey(Inquiry, on_delete = models.CASCADE)
     recommendation = models.CharField(max_length = 250)
     
-    def __str___(self):
+    def __str__(self):
         return self.body
 class Response(models.Model):
     choice = models.CharField(max_length = 250)
     is_valid = models.BooleanField(default=False)
     date_created = models.DateField(auto_created=True)
     question = models.ForeignKey(Question, on_delete = models.CASCADE)
-    def __str___(self):
-        return self.body
+    def __str__(self):
+        return self.choice
 
 class Questionnaire(models.Model):
     date_created = models.DateField(auto_created=True,default=timezone.now)
     questions = models.ForeignKey(Question, on_delete = models.CASCADE)
     responses = models.ForeignKey(Response, on_delete = models.CASCADE)
+    other = models.CharField(max_length = 250, default='none')
     code_commercial = models.CharField( max_length=200)
     customer = models.CharField( max_length=200)
-    def __str___(self):
+    def __str__(self):
         return self.customer
 

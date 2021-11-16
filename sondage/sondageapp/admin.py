@@ -50,9 +50,11 @@ class CustomUserAdmin(UserAdmin):
     )
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ['body']
-    fields = ['body']
-    list_filter = ['body']
+    def inquiry_title(self, obj):
+        return obj.inquiry.title
+    list_display = ('body','inquiry_title')
+    fields = ('body','inquiry')
+    list_filter = ('body','inquiry')
     search_fields = ['body']
 class ResponseAdmin(admin.ModelAdmin):
     def question_body(self, obj):
@@ -60,12 +62,29 @@ class ResponseAdmin(admin.ModelAdmin):
     list_display = ('choice', 'question_body')
     fields = ('choice', 'question')
     list_filter = ('choice', 'question')
+    search_fields = ['choice']
     autocomplete_fields = ['question']
 
+class QuestionnaireAdmin(admin.ModelAdmin):
+    def questions_body(self, obj):
+        return obj.questions.body
+    def responses_choice(self, obj):
+        return obj.responses.choice
+    list_display = ('questions_body','responses_choice', 'other')
+    fields = ('responses', 'questions', 'other')
+    list_filter = ('responses', 'questions', 'other')
+    autocomplete_fields = ['questions']
+    search_fields = ['responses__choice']
+class InquiryAdmin(admin.ModelAdmin):
+    list_display = ('title', )
+    fields = ('title',)
+    list_filter = ('title', )
+    search_fields = ['title']
+    
     
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(Inquiry)
-admin.site.register(Questionnaire)
+admin.site.register(Inquiry, InquiryAdmin)
+admin.site.register(Questionnaire, QuestionnaireAdmin)
 admin.site.register(Response, ResponseAdmin)
 admin.site.register(Customer)

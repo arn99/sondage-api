@@ -55,7 +55,7 @@ class InquirySerializer(FlexFieldsModelSerializer):
 class QuestionnaireSerializer(FlexFieldsModelSerializer):
      class Meta:
         model = Questionnaire
-        fields = ('id', 'customer', 'questions', 'responses', 'code_commercial')
+        fields = ('id', 'customer', 'questions', 'responses', 'code_commercial', 'other')
         expandable_fields = {'questions': QuestionSerializer}
 
 
