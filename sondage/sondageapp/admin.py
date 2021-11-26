@@ -53,16 +53,16 @@ class QuestionAdmin(admin.ModelAdmin):
     def inquiry_title(self, obj):
         return obj.inquiry.title
     list_display = ('body','inquiry_title')
-    fields = ('body','inquiry')
+    fields = ('body','inquiry', 'date_created')
+    fields = ('body','inquiry', 'date_created')
     list_filter = ('body','inquiry')
     search_fields = ['body']
 class ResponseAdmin(admin.ModelAdmin):
     def question_body(self, obj):
         return obj.question.body
-    list_display = ('choice', 'question_body')
-    fields = ('choice', 'question')
+    list_display = ('choice', 'type', 'question_body')
+    fields = ('choice', 'type', 'question','date_created')
     list_filter = ('choice', 'question')
-    search_fields = ['choice']
     autocomplete_fields = ['question']
 
 class QuestionnaireAdmin(admin.ModelAdmin):
@@ -70,14 +70,16 @@ class QuestionnaireAdmin(admin.ModelAdmin):
         return obj.questions.body
     def responses_choice(self, obj):
         return obj.responses.choice
-    list_display = ('questions_body','responses_choice', 'other')
-    fields = ('responses', 'questions', 'other')
+    def responses_type(self, obj):
+        return obj.responses.type
+    list_display = ('questions_body','responses_choice', 'responses_type', 'other')
+    fields = ('responses', 'questions','date_created', 'other')
     list_filter = ('responses', 'questions', 'other')
     autocomplete_fields = ['questions']
     search_fields = ['responses__choice']
 class InquiryAdmin(admin.ModelAdmin):
     list_display = ('title', )
-    fields = ('title',)
+    fields = ('title', 'date_created')
     list_filter = ('title', )
     search_fields = ['title']
     

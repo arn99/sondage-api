@@ -6,6 +6,10 @@ from django.utils import timezone
 from django.dispatch import receiver
 from .managers import UserManager
 
+OTHER_CHOICES = (
+    (1, "Choix"),
+    (2, "Autre")
+)
 
 class CustomUser(AbstractUser):
     is_commercial = models.BooleanField(default=False)
@@ -44,6 +48,7 @@ class Question(models.Model):
         return self.body
 class Response(models.Model):
     choice = models.CharField(max_length = 250)
+    type = models.IntegerField( choices=OTHER_CHOICES, default=1)
     is_valid = models.BooleanField(default=False)
     date_created = models.DateField(auto_created=True)
     question = models.ForeignKey(Question, on_delete = models.CASCADE)

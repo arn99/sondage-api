@@ -28,7 +28,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 class ResponseSerializer(FlexFieldsModelSerializer):
     class Meta:
         model = Response
-        fields = ['id', 'choice']
+        fields = ['id', 'choice', 'type']
 
 class InquirySerializerForquestion(FlexFieldsModelSerializer):
     class Meta:
